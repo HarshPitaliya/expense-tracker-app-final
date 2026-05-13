@@ -1,0 +1,43 @@
+************************************ Latest apk - 29 Aug 2025*************************************
+6. commit "Code cleanup. Final version 1.0' 29 Aug 2025 16:45 Hrs
+	-code cleanup
+	-viewmodels added for some screens
+************************************ Latest apk - 29 Aug 2025*************************************
+
+
+
+************************************ Latest apk - 27 Aug 2025*************************************
+5.commit 'Analytics improved' on 27 Aug 2025 14:38 Hrs
+
+
+4. commit 'Major changes - Category, Budget and Login screens removed ' on 26 Aug 2025
+	- Historical screen renamed to AnlyticsScreen.
+	- Major change: Login screen, Category screen and Budget screen and related functionality removed.
+	- Navigation files renamed and put in a seperate package 'navigation'
+	- TransactionActionSheet modified in TransactionComponents.kt
+	- icons for each transaction added
+************************************ Latest apk - 27 Aug 2025*************************************
+
+
+
+************************************ Latest apk - 21 Aug 2025*************************************
+3. commit 'Add transaction manually in TransactionScreen' on 21 Aug 2025 at 14.14 hrs
+	- Transaction screen - adding transaction manually feature added by extendedFAB
+
+2. commit 'Minor tweaks in overview screen' on date 20 Aug 2025 at 16.27 Hrs
+	-donut chart color in system light mode improved.
+	-added vertical dividers between Expenses, Budget and Safe to Spend
+	-rupee values now without decimals
+************************************ latest apk - 21 Aug 2025 *************************************
+
+
+
+*************************** This apk sent on 19th Aug ***************************
+1. commit 'Date range picker change' date 19 aug 2025
+	-end date hard coded to 31 Dec 2099
+	-date picker changed
+	-user can only selct month and year for start date as day is fixed to 01. For example user chooses April and 2025 then start date is 01 April 2025.
+	-start date can not be in future i.e. selection of mm yyyy is restricted to Jan 2025 to (current month current year -> as of today Aug 2025) both inclusive.
+	-user's profile name is not optional, it is mandatory.
+	-rupee values now without decimals
+*************************** This apk sent on 19th Aug ***************************

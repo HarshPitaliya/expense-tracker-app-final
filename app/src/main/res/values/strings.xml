@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Expense Tracker</string>
+    <string name="login">Login</string>
+    <string name="user_id">User ID</string>
+    <string name="password">Password</string>
+    <string name="overview">Overview</string>
+    <string name="historical_trends">Historical Trends</string>
+    <string name="profile">Profile</string>
+    <string name="budget_management">Budget Management</string>
+    <string name="categories">Categories</string>
+    <string name="transactions">Transactions</string>
+    <string name="top_categories_this_month">Top Categories this Month</string>
+    <string name="top_expenses_this_month">Top Expenses this Month</string>
+    <string name="view_all">View All</string>
+    <string name="update">Update</string>
+    <string name="total_expenses">Total Expenses</string>
+    <string name="total_budget">Total Budget</string>
+    <string name="safe_to_spend">Safe to Spend</string>
+    <string name="search_transactions">Search transactions</string>
+    <string name="sms_permission_required">SMS permission is required to automatically parse transaction messages</string>
+    <string name="grant_sms_permissions">Grant SMS Permissions</string>
+    <string name="complete_setup">Complete Setup</string>
+    <string name="welcome_to_expense_tracker">Welcome to Expense Tracker</string>
+    <string name="lets_set_up_your_expense_tracking">Let\'s set up your expense tracking</string>
+</resources>

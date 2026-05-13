@@ -1,0 +1,32 @@
+com.expensetracker.test.app-savedstate-ktx-1.3.1-0 C:\Users\HP\.gradle\caches\8.13\transforms\014e4a543c07e01814b7048b6d70086c\transformed\savedstate-ktx-1.3.1\res
+com.expensetracker.test.app-customview-poolingcontainer-1.0.0-1 C:\Users\HP\.gradle\caches\8.13\transforms\11e74316d9e0f50348983f86254856a9\transformed\customview-poolingcontainer-1.0.0\res
+com.expensetracker.test.app-graphics-path-1.0.1-2 C:\Users\HP\.gradle\caches\8.13\transforms\28d9b5f7ae2a18eeed4f873a77f601aa\transformed\graphics-path-1.0.1\res
+com.expensetracker.test.app-activity-ktx-1.10.1-3 C:\Users\HP\.gradle\caches\8.13\transforms\34116f6f9835377704cc7f48cd43e10c\transformed\activity-ktx-1.10.1\res
+com.expensetracker.test.app-core-ktx-1.16.0-4 C:\Users\HP\.gradle\caches\8.13\transforms\3d839a7844595aceee4d65bb36de267b\transformed\core-ktx-1.16.0\res
+com.expensetracker.test.app-annotation-experimental-1.4.1-5 C:\Users\HP\.gradle\caches\8.13\transforms\4070b11029014b7b51e8625ce874e2fa\transformed\annotation-experimental-1.4.1\res
+com.expensetracker.test.app-ui-graphics-release-6 C:\Users\HP\.gradle\caches\8.13\transforms\4b3d5d808fd1915baacf468c3020a227\transformed\ui-graphics-release\res
+com.expensetracker.test.app-lifecycle-livedata-core-2.9.2-7 C:\Users\HP\.gradle\caches\8.13\transforms\52c0ef3535c90120710c445c01a20f24\transformed\lifecycle-livedata-core-2.9.2\res
+com.expensetracker.test.app-core-1.16.0-8 C:\Users\HP\.gradle\caches\8.13\transforms\533646f5222d6873ba35598de83107ac\transformed\core-1.16.0\res
+com.expensetracker.test.app-startup-runtime-1.1.1-9 C:\Users\HP\.gradle\caches\8.13\transforms\5fd60072142c080b32eddbfdffa8fa3a\transformed\startup-runtime-1.1.1\res
+com.expensetracker.test.app-lifecycle-viewmodel-release-10 C:\Users\HP\.gradle\caches\8.13\transforms\60493c657e57e41066e70736962e4298\transformed\lifecycle-viewmodel-release\res
+com.expensetracker.test.app-lifecycle-viewmodel-ktx-2.9.2-11 C:\Users\HP\.gradle\caches\8.13\transforms\72b380488edf01bce537ddd117522834\transformed\lifecycle-viewmodel-ktx-2.9.2\res
+com.expensetracker.test.app-activity-1.10.1-12 C:\Users\HP\.gradle\caches\8.13\transforms\815c0b89c9304cb5400f8a3ff63468fd\transformed\activity-1.10.1\res
+com.expensetracker.test.app-savedstate-compose-release-13 C:\Users\HP\.gradle\caches\8.13\transforms\84071e97b70ea336403b67635f3c6d14\transformed\savedstate-compose-release\res
+com.expensetracker.test.app-savedstate-release-14 C:\Users\HP\.gradle\caches\8.13\transforms\873e87b70617bfa6c41c2259975c021e\transformed\savedstate-release\res
+com.expensetracker.test.app-ui-test-release-15 C:\Users\HP\.gradle\caches\8.13\transforms\8d784793fdcd2e2eca3bffef464b6fb2\transformed\ui-test-release\res
+com.expensetracker.test.app-core-viewtree-1.0.0-16 C:\Users\HP\.gradle\caches\8.13\transforms\910d32be0b183f581bbd79c1e88bf194\transformed\core-viewtree-1.0.0\res
+com.expensetracker.test.app-activity-compose-1.10.1-17 C:\Users\HP\.gradle\caches\8.13\transforms\9c19fb0379ed7a5656079f51e2bcc96d\transformed\activity-compose-1.10.1\res
+com.expensetracker.test.app-lifecycle-process-2.9.2-18 C:\Users\HP\.gradle\caches\8.13\transforms\a6914c4a57d0a060f57f58d71bce5b2a\transformed\lifecycle-process-2.9.2\res
+com.expensetracker.test.app-ui-release-19 C:\Users\HP\.gradle\caches\8.13\transforms\ad2e1ea910ae1ed854b6b279674c201d\transformed\ui-release\res
+com.expensetracker.test.app-emoji2-1.4.0-20 C:\Users\HP\.gradle\caches\8.13\transforms\c02a7c2835245e62f1fd8a3b9723057b\transformed\emoji2-1.4.0\res
+com.expensetracker.test.app-core-1.7.0-21 C:\Users\HP\.gradle\caches\8.13\transforms\c0c69f58327093d805528abd438d8330\transformed\core-1.7.0\res
+com.expensetracker.test.app-core-runtime-2.2.0-22 C:\Users\HP\.gradle\caches\8.13\transforms\cc280bd99e830e245fdd8e231386a7d0\transformed\core-runtime-2.2.0\res
+com.expensetracker.test.app-lifecycle-runtime-compose-release-23 C:\Users\HP\.gradle\caches\8.13\transforms\dad0ca16fc1590b0a4cfbcd1fb4bffef\transformed\lifecycle-runtime-compose-release\res
+com.expensetracker.test.app-tracing-1.2.0-24 C:\Users\HP\.gradle\caches\8.13\transforms\e57dfbce7ae65c8b9017d6568e6f076d\transformed\tracing-1.2.0\res
+com.expensetracker.test.app-profileinstaller-1.4.0-25 C:\Users\HP\.gradle\caches\8.13\transforms\ee333a7083ceb4354e45214b77cf419a\transformed\profileinstaller-1.4.0\res
+com.expensetracker.test.app-lifecycle-runtime-release-26 C:\Users\HP\.gradle\caches\8.13\transforms\f061ae47c4964ba147dc16941c60ac5e\transformed\lifecycle-runtime-release\res
+com.expensetracker.test.app-lifecycle-viewmodel-savedstate-release-27 C:\Users\HP\.gradle\caches\8.13\transforms\f1dbd6d51705497496b4299dacbb79d7\transformed\lifecycle-viewmodel-savedstate-release\res
+com.expensetracker.test.app-androidTest-28 D:\Deepak\Programming\Android\Harsh Project\ExpenseTracker\app\build\generated\res\resValues\androidTest\debug
+com.expensetracker.test.app-mergeDebugAndroidTestResources-29 D:\Deepak\Programming\Android\Harsh Project\ExpenseTracker\app\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\merged.dir
+com.expensetracker.test.app-mergeDebugAndroidTestResources-30 D:\Deepak\Programming\Android\Harsh Project\ExpenseTracker\app\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\stripped.dir
+com.expensetracker.test.app-debugAndroidTest-31 D:\Deepak\Programming\Android\Harsh Project\ExpenseTracker\app\build\intermediates\merged_res\debugAndroidTest\mergeDebugAndroidTestResources

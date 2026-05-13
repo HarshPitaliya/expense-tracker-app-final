@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#000000</color>
+    <color name="blue_100">#BBDEFB</color>
+    <color name="blue_300">#64B5F6</color>
+    <color name="blue_500">#2196F3</color>
+    <color name="blue_700">#1976D2</color>
+    <color name="gray_200">#EEEEEE</color>
+    <color name="gray_500">#9E9E9E</color>
+    <color name="green_500">#4CAF50</color>
+    <color name="orange_500">#FF9800</color>
+    <color name="red_500">#F44336</color>
+    <color name="white">#FFFFFF</color>
+    <string name="app_name">Expense Tracker</string>
+    <string name="budget_management">Budget Management</string>
+    <string name="categories">Categories</string>
+    <string name="complete_setup">Complete Setup</string>
+    <string name="grant_sms_permissions">Grant SMS Permissions</string>
+    <string name="historical_trends">Historical Trends</string>
+    <string name="lets_set_up_your_expense_tracking">Let\'s set up your expense tracking</string>
+    <string name="login">Login</string>
+    <string name="overview">Overview</string>
+    <string name="password">Password</string>
+    <string name="profile">Profile</string>
+    <string name="safe_to_spend">Safe to Spend</string>
+    <string name="search_transactions">Search transactions</string>
+    <string name="sms_permission_required">SMS permission is required to automatically parse transaction messages</string>
+    <string name="top_categories_this_month">Top Categories this Month</string>
+    <string name="top_expenses_this_month">Top Expenses this Month</string>
+    <string name="total_budget">Total Budget</string>
+    <string name="total_expenses">Total Expenses</string>
+    <string name="transactions">Transactions</string>
+    <string name="update">Update</string>
+    <string name="user_id">User ID</string>
+    <string name="view_all">View All</string>
+    <string name="welcome_to_expense_tracker">Welcome to Expense Tracker</string>
+    <style name="Theme.ExpenseTracker" parent="Theme.Material3.DayNight">
+        
+        <item name="colorPrimary">@color/blue_500</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorPrimaryContainer">@color/blue_100</item>
+        <item name="colorOnPrimaryContainer">@color/blue_700</item>
+        
+        <item name="colorSecondary">@color/blue_300</item>
+        <item name="colorOnSecondary">@color/white</item>
+        <item name="colorSecondaryContainer">@color/blue_100</item>
+        <item name="colorOnSecondaryContainer">@color/blue_700</item>
+        
+        <item name="colorError">@color/red_500</item>
+        <item name="colorOnError">@color/white</item>
+        
+        <item name="colorSurface">@color/white</item>
+        <item name="colorOnSurface">@color/black</item>
+        <item name="colorSurfaceVariant">@color/gray_200</item>
+        <item name="colorOnSurfaceVariant">@color/gray_500</item>
+        
+        <item name="android:statusBarColor">?attr/colorPrimary</item>
+    </style>
+</resources>
