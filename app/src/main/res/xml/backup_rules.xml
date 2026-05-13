@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<full-backup-content>
+    <!-- Exclude specific files or directories from backup -->
+    <exclude domain="file" path="encryption.key"/>
+    <exclude domain="file" path="*.enc"/>
+    <exclude domain="file" path="*.iv"/>
+</full-backup-content>

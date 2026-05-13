@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<data-extraction-rules>
+    <cloud-backup>
+        <!-- Exclude specific files or directories from cloud backup -->
+        <exclude domain="file" path="encryption.key"/>
+        <exclude domain="file" path="*.enc"/>
+        <exclude domain="file" path="*.iv"/>
+    </cloud-backup>
+    <device-transfer>
+        <!-- Allow device transfer for most app data but exclude sensitive files -->
+        <exclude domain="file" path="encryption.key"/>
+        <exclude domain="file" path="*.enc"/>
+        <exclude domain="file" path="*.iv"/>
+    </device-transfer>
+</data-extraction-rules>
