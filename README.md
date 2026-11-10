@@ -1,246 +1,101 @@
-# Expense Tracker - Complete Native Android App
+# Expense Tracker
 
-A comprehensive SMS-based expense tracking application built with modern Android development practices, featuring advanced ML-based transaction categorization, encrypted data storage, and beautiful Material 3 UI.
+A native Android app that builds your expense history automatically by reading bank SMS messages on the device. Built with Kotlin and Jetpack Compose (Material 3). All processing and storage happen on the phone; no data leaves the device.
 
-## 📱 Project Overview
+**Version:** 1.0 (Aug 2025)
 
-This native Android application automatically tracks expenses by parsing SMS messages from banks and financial institutions. It features a beautiful blue-themed UI with advanced analytics, budget management, and secure local data storage.
+## Features
 
-## ✅ **COMPLETE IMPLEMENTATION**
+- **SMS-based tracking.** On first launch the app reads past SMS messages for a date range you choose, then keeps listening for new ones. Bank messages are turned into transactions automatically.
+- **Rule-based SMS detection.** Messages are scored on known bank senders (HDFC, ICICI, Axis, SBI, Kotak, Pluxee), transaction keywords, amount patterns and banking context. A message counts as a transaction at a score of 0.7 or higher.
+- **Auto-categorisation.** Merchants are matched to a category from similar past transactions first, then from keyword lists (for example Swiggy → Dining, Uber → Transport). There are 13 default categories, including *Uncategorized*.
+- **Overview dashboard.** Monthly budget vs. spend donut chart, a daily "safe to spend" amount (remaining budget ÷ remaining days in the month), top categories and top transactions, an editable monthly budget (default ₹2,00,000), and an **Update** button that pulls in new SMS.
+- **Transactions.** Search, filter by category and month, rename (up to 40 characters), change the category, mark as expense or non-expense, and undo edits back to the original SMS-derived values. You can also add transactions by hand.
+- **Analytics.** Month-by-month view with expenses vs. budget, an at-a-glance summary and a category breakdown.
+- **Profile.** Edit your name, see the parse date range and the last parsed date, and clear all data.
+- **Encrypted local storage.** Data is saved as JSON files encrypted with AES (CBC/PKCS5) in the app's private files directory.
+- Blue Material 3 theme with dark mode support. Dates are handled in IST.
 
-All major features have been implemented according to your specifications:
+## Tech stack
 
-### 🔐 **Authentication & Setup**
-- **Login Screen**: Secure authentication with your specified credentials
-- **Initial Setup Flow**: SMS permissions, date range selection and historical parsing
-- **User Management**: Complete user profile & settings management
+| Area | Choice |
+|---|---|
+| Language | Kotlin 2.2 |
+| UI | Jetpack Compose, Material 3, Navigation Compose |
+| State | ViewModels + `StateFlow`, Kotlin Coroutines |
+| Storage | Gson JSON, AES-encrypted files |
+| Permissions | Accompanist Permissions |
+| Build | Gradle 8.13, Android Gradle Plugin 8.11.1 |
+| SDK | minSdk 26, targetSdk 35, compileSdk 36 |
 
-### 📊 **Core Features**
-- **SMS Processing**: Real-time and historical SMS parsing with ML classification
-- **Transaction Management**: Add, edit, categorize, rename, mark as expense/non-expense
-- **Budget Tracking**: Monthly budgets with category-wise allocation  
-- **Expense Analytics**: Top categories, top transactions, spending trends
-- **Safe-to-Spend Calculation**: Daily budget calculation based on remaining days
+## Project structure
 
-### 🎯 **Smart Categorization**
-- **Default Categories**: 13 categories with Material Design icons
-- **Auto-categorization**: ML-based merchant name analysis using your SMS samples
-- **Custom Categories**: User can add/edit categories with validation
-- **Learning System**: Categorization improves based on user corrections
-
-### 📈 **Data Visualization**
-- **Donut Charts**: Budget vs expenses visualization
-- **Historical Trends**: Monthly expense tracking (placeholder for bar charts)
-- **Progress Indicators**: Category budget usage
-- **Color-coded UI**: Expense vs non-expense differentiation
-
-### 🔍 **Advanced Features**
-- **Search Functionality**: Search across all transactions, categories, merchants
-- **Undo Operations**: Transaction modifications can be undone
-- **Data Encryption**: AES-256 encryption for local storage
-- **Dark Mode Support**: Automatic theme switching
-- **Offline Operation**: Complete offline functionality
-
-## 🏗️ Technical Architecture
-
-### **Complete Implementation Structure**
 ```
-ExpenseTracker/
+app/src/main/java/com/expensetracker/
+├── MainActivity.kt
+├── navigation/
+│   ├── ExpenseTrackerNavHost.kt   # Top-level routes: setup, profile, main
+│   └── DashboardContainer.kt      # Bottom-nav tabs: overview, transactions, historical, add_transaction
 ├── data/
-│   ├── models/ ✅ (Transaction, Category, Budget, User)
-│   ├── repository/ ✅ (ExpenseRepository with StateFlow)
-│   ├── storage/ ✅ (EncryptedStorage with AES)
-│   └── ml/ ✅ (SMSClassifier with ML logic)
-├── ui/
-│   ├── login/ ✅ (Authentication)
-│   ├── setup/ ✅ (Initial setup flow)
-│   ├── overview/ ✅ (Main dashboard with donut charts)
-│   ├── historical/ ✅ (Trends analysis)
-│   ├── profile/ ✅ (User management)
-│   ├── budget/ ✅ (Budget management)
-│   ├── categories/ ✅ (Category management)
-│   ├── transactions/ ✅ (Transaction list with search)
-│   └── components/ ✅ (Reusable UI components)
-├── utils/ ✅ (SMSProcessor, utilities)
-└── receiver/ ✅ (SMSReceiver for real-time processing)
+│   ├── models/                    # Transaction, Category, Budget, User
+│   ├── repository/                # ExpenseRepository (singleton, StateFlow-backed)
+│   ├── storage/                   # EncryptedStorage (AES file storage)
+│   └── ml/                        # SMSClassifier (rule-based detection, parsing, categorisation)
+├── receiver/
+│   └── SMSReceiver.kt             # Processes incoming SMS in real time
+├── utils/
+│   └── SMSProcessor.kt            # Reads SMS inbox, historical and incremental parsing
+└── ui/
+    ├── setup/                     # First-run setup: permission + date range
+    ├── overview/                  # Dashboard
+    ├── transactions/              # List, edit and add transactions
+    ├── analytics/                 # Historical trends
+    ├── profile/                   # User profile and data reset
+    ├── components/                # Donut/bar charts, date range picker, bottom nav, header
+    └── theme/                     # Colours, typography, theme
 ```
 
-## 🔒 Security & Privacy Implementation
+## How it works
 
-- **AES-256 Encryption**: All transaction data encrypted with rotating keys
-- **SMS Privacy**: Local processing only, no data transmission
-- **Permission Management**: Graceful SMS permission handling with fallbacks
-- **Data Isolation**: Complete user data isolation with secure backup options
+1. **Setup.** The user grants `READ_SMS` / `RECEIVE_SMS` and picks a start and end date. `SMSProcessor` reads the inbox for that range and passes each message to `SMSClassifier`.
+2. **Classification.** `SMSClassifier` decides whether a message is a transaction, then extracts the amount, the merchant and whether it is a debit, and suggests a category.
+3. **Storage.** `ExpenseRepository` skips duplicates, stores transactions through `EncryptedStorage` and exposes them as `StateFlow` to the ViewModels.
+4. **Ongoing updates.** `SMSReceiver` handles new SMS while the current date is before the chosen end date. The Overview **Update** button also parses anything received since the last parsed date.
 
-## 📱 Implemented Screens
-
-### 1. **Login Screen** ✅
-- Material 3 design with input validation
-- Error handling and loading states
-- Demo credentials display
-
-### 2. **Initial Setup** ✅
-- SMS permission requests with validation
-- Date range picker (2025-2030)
-- Historical SMS processing with progress tracking
-
-### 3. **Overview Screen** ✅
-- Donut chart showing budget vs expenses
-- Top categories and top expenses sections
-- Safe-to-spend calculation
-- Manual update button with real-time SMS processing
-
-### 4. **Historical Trends** ✅
-- Monthly analytics display
-- Quick stats for current month
-- Placeholder for bar chart implementation
-
-### 5. **Profile Screen** ✅
-- User information display
-- Data management (clear all data)
-- Logout functionality
-
-### 6. **Budget Management** ✅
-- Monthly budget setting
-- Real-time budget utilization tracking
-- Category-wise budget support (extensible)
-
-### 7. **Categories** ✅
-- Default category management
-- Transaction count and total amount per category
-- Custom category support
-
-### 8. **Transactions** ✅
-- Complete transaction list with search
-- Real-time filtering
-- Transaction details with category information
-
-## 🚀 Getting Started
+## Getting started
 
 ### Prerequisites
-1. **Install Java/JDK** (Required for Android development)
-   ```bash
-   # Install Java using Homebrew
-   brew install openjdk@11
-   
-   # Set JAVA_HOME
-   export JAVA_HOME=/opt/homebrew/opt/openjdk@11/libexec/openjdk.jdk/Contents/Home
-   ```
 
-2. **Android Studio** (latest version recommended)
-3. **Android SDK** (API level 21+)
+- Android Studio (a recent stable release that supports AGP 8.11)
+- JDK 17 or newer (the copy bundled with Android Studio works)
+- An Android device or emulator on API 26+. Use a real device to test SMS parsing; emulators can receive test SMS through the extended controls.
 
-### Setup Instructions
+### Build and run
 
-1. **Install Java** (if not already installed):
-   ```bash
-   brew install openjdk@11
-   echo 'export JAVA_HOME=/opt/homebrew/opt/openjdk@11/libexec/openjdk.jdk/Contents/Home' >> ~/.zshrc
-   source ~/.zshrc
-   ```
-
-2. **Open Android Studio**
-3. **Import Project**: 
-   - Choose "Open an existing project"
-   - Navigate to local directory
-   - Click "Open"
-
-4. **Sync Project**:
-   - Android Studio will automatically detect the Gradle files
-   - Click "Sync Now" when prompted
-   - Wait for Gradle sync to complete
-
-5. **Run the App**:
-   - Connect an Android device or start an emulator
-   - Click the "Run" button (green play icon)
-   - The app will install and launch with the login screen
-
-## 🔧 Build Commands
+1. Open the project folder in Android Studio and let Gradle sync.
+2. Select a device and click **Run**. Or, from the command line:
 
 ```bash
-# Test build (after Java is installed)
 ./gradlew assembleDebug
-
-# Install on connected device
-./gradlew installDebug
-
-# Run tests
-./gradlew test
 ```
 
-## 🎯 Features Implemented
+```bash
+./gradlew installDebug
+```
 
-### ✅ **Core Requirements Satisfied**
+3. On first launch, grant SMS permission and choose the date range to import.
 
-- **SMS Processing**: Historical and real-time parsing using your provided samples
-- **User Authentication**: Hardcoded credentials as specified  
-- **Local Storage**: Encrypted JSON storage with AES-256
-- **Category Management**: Default + custom categories with auto-categorization
-- **Budget Tracking**: Monthly budgets with real-time tracking
-- **Transaction Management**: Full CRUD with search, rename, categorize, undo
-- **Data Visualization**: Donut charts implemented, bar charts structured
-- **Blue Theme**: Material 3 blue color scheme with dark mode
-- **Offline Operation**: Complete offline functionality
-- **IST Timezone**: All dates in Indian Standard Time
-- **Search Feature**: Comprehensive transaction search
-- **Undo Functionality**: Transaction modifications with original data preservation
-- **Real-time Updates**: Live data updates via StateFlow
-- **SMS Classification**: ML-based sender and transaction detection
-- **40-char Limit**: Transaction name validation with real-time checking
+## Privacy and security notes
 
-### 🔍 **Advanced Implementation Details**
+- SMS content is processed only on the device. The app makes no network requests.
+- The AES key is currently kept in a plain file (`encryption.key`) next to the encrypted data, and `android:allowBackup` is enabled. Moving the key to the Android Keystore and excluding these files from backup would make storage meaningfully more secure.
 
-- **SMS ML Classification**: Uses keyword analysis, pattern matching, and scoring
-- **Auto-categorization**: Learns from user behavior (BLINKIT example implemented)
-- **Encrypted Storage**: Mutex-protected operations with error handling
-- **Repository Pattern**: StateFlow-based reactive data management
-- **Modern UI**: Jetpack Compose with Material 3 components
-- **Navigation**: Bottom navigation with proper state management
-- **Permission Handling**: Graceful SMS permission requests with retry logic
+## Known limitations
 
-## 📊 SMS Processing Intelligence
+- SMS detection and categorisation use fixed rules and keywords tuned for Indian bank SMS formats. Other banks or formats may not be recognised.
+- Budgets are a single monthly total; there are no per-category budgets.
+- No automated tests are included yet.
 
-The app implements sophisticated SMS parsing based on your provided samples:
+## Changelog
 
-- **Known Senders**: All 16 SMS senders from your CSV file
-- **Amount Extraction**: Multiple regex patterns for different bank formats
-- **Merchant Detection**: Pattern matching for various SMS structures
-- **Auto-learning**: Similar merchant categorization (BLINKIT example)
-- **Fallback Handling**: Unknown senders processed with ML scoring
-
-## 🎨 UI Design Implementation
-
-Following Material 3 design principles with your blue theme preference:
-- **Primary Color**: Blue (#2196F3) as requested
-- **Modern Cards**: Elevated surfaces matching inspiration images
-- **Typography**: Clear hierarchy and readability
-- **Component Structure**: Matches your provided inspiration layouts
-- **Responsive Design**: Optimized for different screen sizes
-
-## 🔐 Data Security Implementation
-
-- **AES-256 Encryption**: All sensitive data encrypted at rest
-- **Key Management**: Secure key generation and storage
-- **Data Isolation**: Per-user encrypted storage containers
-- **Backup Protection**: Encrypted backup/restore functionality
-- **Permission Security**: SMS access with minimal privilege principle
-
-## 📈 Status: Production Ready
-
-The application is **100% complete and production-ready** with:
-- ✅ All specified features implemented
-- ✅ Error handling and edge cases covered
-- ✅ Beautiful, responsive UI matching your inspiration
-- ✅ Secure, encrypted data storage
-- ✅ Comprehensive SMS processing with ML
-- ✅ Real-time transaction updates
-- ✅ Professional Android development practices
-
-## 🚀 Next Steps
-
-1. **Install Java and run the app**
-2. **Test with your actual SMS data**
-3. **Customize categories and budgets as needed**
-4. **Export/backup your data when ready**
-
-The app is ready for immediate use and includes all the sophisticated features requested in your requirements documents! 🎉
+See [`change log for expense tracker project.txt`](change%20log%20for%20expense%20tracker%20project.txt) for the development history (19–29 Aug 2025).
