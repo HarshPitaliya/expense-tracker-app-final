@@ -14,7 +14,7 @@ A native Android app that builds your expense history automatically by reading b
 - **Analytics.** Month-by-month view with expenses vs. budget, an at-a-glance summary and a category breakdown.
 - **Profile.** Edit your name, see the parse date range and the last parsed date, and clear all data.
 - **Encrypted local storage.** Data is saved as JSON files encrypted with AES (CBC/PKCS5) in the app's private files directory.
-- Blue Material 3 theme with dark mode support. Dates are handled in IST.
+- Material 3 theming that follows the system light/dark setting. On Android 12+ it uses dynamic (wallpaper-based) colours; older versions fall back to the built-in blue palette. Dates are handled in IST.
 
 ## Tech stack
 
@@ -72,7 +72,7 @@ app/src/main/java/com/expensetracker/
 
 ### Build and run
 
-1. Open the project folder in Android Studio and let Gradle sync.
+1. Open the project folder in Android Studio and let Gradle sync. The repo includes a `local.properties` that points to a Windows SDK path; Android Studio rewrites it on sync. For command-line builds, set `sdk.dir` in that file (or `ANDROID_HOME`) to your own SDK location.
 2. Select a device and click **Run**. Or, from the command line:
 
 ```bash
@@ -83,18 +83,22 @@ app/src/main/java/com/expensetracker/
 ./gradlew installDebug
 ```
 
+   Only the Unix `gradlew` script is included. On Windows, build from Android Studio or run `gradle wrapper` once to generate `gradlew.bat`.
+
 3. On first launch, grant SMS permission and choose the date range to import.
 
 ## Privacy and security notes
 
 - SMS content is processed only on the device. The app makes no network requests.
-- The AES key is currently kept in a plain file (`encryption.key`) next to the encrypted data, and `android:allowBackup` is enabled. Moving the key to the Android Keystore and excluding these files from backup would make storage meaningfully more secure.
+- The AES key is currently kept in a plain file (`encryption.key`) in the same private directory as the encrypted data. Moving the key to the Android Keystore would make storage meaningfully more secure.
+- `android:allowBackup` is enabled, but the backup and data-extraction rules exclude `encryption.key`, `*.enc` and `*.iv`, so the key and transaction data are not included in cloud backups or device transfers.
 
 ## Known limitations
 
 - SMS detection and categorisation use fixed rules and keywords tuned for Indian bank SMS formats. Other banks or formats may not be recognised.
 - Budgets are a single monthly total; there are no per-category budgets.
 - No automated tests are included yet.
+- The repo has no `.gitignore`, so build outputs (`app/build/`, `build/`), `local.properties` and `.DS_Store` files are committed.
 
 ## Changelog
 
